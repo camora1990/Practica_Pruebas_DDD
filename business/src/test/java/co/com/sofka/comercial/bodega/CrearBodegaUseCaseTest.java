@@ -32,7 +32,10 @@ class CrearBodegaUseCaseTest {
                 .getDomainEvents();
 
         //asserts
+        var bodegaCreada =(BodegaCreada) events.get(0);
 
+        Assertions.assertEquals("xxxx",bodegaCreada.aggregateRootId());
+        Assertions.assertEquals(2.8F,bodegaCreada.getDimension().value().largo());
     }
 
 }

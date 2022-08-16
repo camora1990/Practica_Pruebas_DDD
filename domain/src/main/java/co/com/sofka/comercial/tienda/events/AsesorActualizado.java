@@ -11,14 +11,14 @@ public class AsesorActualizado extends DomainEvent {
     private final Comision comision;
 
     public AsesorActualizado(AsesorId entityId, Nombre nombre) {
-        super("co.com.sofka.comercial.AsesorActualizado");
+        super("co.com.sofka.comercial.tienda.AsesorActualizado");
         this.entityId = entityId;
         this.nombre = nombre;
         comision = null;
     }
 
     public AsesorActualizado(AsesorId entityId, Comision comision) {
-        super("co.com.sofka.comercial.AsesorActualizado");
+        super("co.com.sofka.comercial.tienda.AsesorActualizado");
         this.entityId = entityId;
         nombre = null;
         this.comision = comision;

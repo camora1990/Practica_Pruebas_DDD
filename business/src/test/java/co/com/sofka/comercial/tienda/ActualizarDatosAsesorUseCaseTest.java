@@ -35,12 +35,27 @@ class ActualizarDatosAsesorUseCaseTest {
     @Test
     void actualizarDatosAsesorHappyPass() {
         //arrange
+        var tiendaId = TiendaId.of("fakeTiendaId");
+        var idAsesor = AsesorId.of("fakeAsesorId");
+        var nombre = new Nombre("Camilo","morales");
+        var comando = new ActualizarDatosAsesor(tiendaId,idAsesor,nombre);
+
+        when(repository.getEventsBy("fakeTiendaId")).thenReturn(history());
+
+        useCase.addRepository(repository);
+
+        var events = UseCaseHandler.getInstance()
+                .setIdentifyExecutor(comando.getTiendaId().value())
+                .syncExecutor(useCase, new RequestCommand<>(comando))
+                .orElseThrow()
+                .getDomainEvents();
 
 
         //act
 
-
+        var event = (AsesorActualizado)events.get(0);
         //assert
+        Assertions.assertEquals("Camilo",event.getNombre().value().nombre());
 
     }
 
